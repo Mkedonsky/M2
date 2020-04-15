@@ -31,6 +31,7 @@ class WeatherDataLoader {
 
             JSONObject jsonObject = new JSONObject(rawData.toString());
             if(jsonObject.getInt("cod") != 200) {
+
                 return null;
             } else {
                 return jsonObject;

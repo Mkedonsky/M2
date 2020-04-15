@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     private void showInputDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.change_city);
 
         final EditText input = new EditText(this);
@@ -92,12 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 final JSONObject jsonObject = WeatherDataLoader.getJSONData(city);
                 if(jsonObject == null) {
                     handler.post(new Runnable() {
-                        @SuppressLint("ShowToast")
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(), R.string.place_not_found,
-                                    Toast.LENGTH_LONG);
-//                            Toast.setGravity(Gravity.CENTER, 0, 0).show();
+                            clickAlertDialog();
                         }
                     });
                 } else {
@@ -197,5 +197,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         weatherIconTextView.setText(icon);
+    }
+    public void clickAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.exclamation)
+                .setMessage(R.string.press_button)
+                .setIcon(R.mipmap.sharp_warning_black_18dp)
+                .setCancelable(false)
+                .setPositiveButton(R.string.button,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

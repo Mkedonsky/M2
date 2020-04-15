@@ -42,6 +42,7 @@
         android:layout_below="@+id/updated_field"
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/colorWhite"
         android:textSize="@dimen/icon_font_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
